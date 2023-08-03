@@ -73,7 +73,9 @@ def creat_table(doc, telega,
         wheel_z = round(data_wheels['z'], 2)
 
         print(table_load_type)
+        #тут добавить if чтобы считалось
         ves_ts = 14
+
         result = ves_ts * wheel_z
 
         list_wheel = [wheel_position, wheel_x, wheel_y, wheel_z, ves_ts, result]
