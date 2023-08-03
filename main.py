@@ -41,7 +41,7 @@ def progon_telegi(path_for_json, num):
 
             creat_table(doc, telega,
                     centr_posit_x_vinch, centr_posit_y_vinch,
-                    table_of_pos_wheels)
+                    table_of_pos_wheels, table_load_type)
 
 
     doc.save(f'TMP_word/По порядку как загружали {num}.docx')
@@ -50,9 +50,9 @@ def progon_telegi(path_for_json, num):
 
 def creat_table(doc, telega,
                 centr_posit_x_vinch, centr_posit_y_vinch,
-                table_of_pos_wheels):
+                table_of_pos_wheels, table_load_type):
 
-    list_names_col = ['Ось/колесо', 'Х', 'Y', 'Z']
+    list_names_col = ['Ось/колесо', 'Х', 'Y', 'Z', 'Вес, тс', 'Воздействие от тележки нормативное']
     column = len(list_names_col)
 
     doc.add_paragraph(f'№ колонны: {telega}')
@@ -72,7 +72,11 @@ def creat_table(doc, telega,
         wheel_y = round(data_wheels['y'], 2)
         wheel_z = round(data_wheels['z'], 2)
 
-        list_wheel = [wheel_position, wheel_x, wheel_y, wheel_z]
+        print(table_load_type)
+        ves_ts = 14
+        result = ves_ts * wheel_z
+
+        list_wheel = [wheel_position, wheel_x, wheel_y, wheel_z, ves_ts, result]
 
         cells = table.add_row().cells
 
